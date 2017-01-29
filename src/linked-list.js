@@ -23,22 +23,28 @@ class LinkedList {
 
         this.length++;
 
+        return this;
+
    }
 
     head() { 
 
   //   if (node.prev  == null)
  //   {this._head=node;}
-    return this._head.data;
+  if (this._head === null){return null;}
+  else{
+    return this._head.data;}
 
     }
 
     tail() {
    //     if (node.next == null)
     //        {this._tail=node;}
+     if (this._tail === null){return null;}
+  else{
         return this._tail.data;
     }
-
+}
     at(index) {
        if (index >= 0 && index< this.length)
         { var state=this._head, i = 0;
@@ -58,7 +64,9 @@ class LinkedList {
     while (i++ < ix){state=state.next;}
         node.next=state.next;
         state.next = node;
-     ++this.next; 
+     //++this.next; 
+this.length++;
+     return this;
   
     }
 
@@ -71,26 +79,18 @@ class LinkedList {
          
  //      var state=this._head;
 
- // while(!this._tail)
- // { 
- //  state.next=this._head;
- //  
+  while(this._head === this._tail)
+  { 
+ 
 
- //      this._tail.prev=this._tail;
- //  this._tail=null;
+      this._tail.prev=this._tail;
+   this._tail=null;}
 
-  // }
-return false;
-
-
-        
-       
-
-
-
-   //    var *state=this._head;
-   //    this._head=this._head.next;
-   //    delete state;
+  this._tail=null;
+  this._head=null;
+  this.length=0;
+     
+    return this;
  
 }
     
@@ -122,7 +122,7 @@ return false;
            
 
         }
-
+        return this;
     }
 
     reverse() {
@@ -134,7 +134,7 @@ return false;
         this._tail = this._head;
          let node = this._head.next;
          let prev = this._head;
-        while (node !== null) {
+        while (node != null) {
 
         if (node.next === null) {
             this._head = node;
@@ -145,7 +145,7 @@ return false;
         prev=current;}
 
 
-
+        return this;
 
            }
 
