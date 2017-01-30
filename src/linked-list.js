@@ -29,8 +29,6 @@ class LinkedList {
 
     head() { 
 
-  //   if (node.prev  == null)
- //   {this._head=node;}
   if (this._head === null){return null;}
   else{
     return this._head.data;}
@@ -38,8 +36,7 @@ class LinkedList {
     }
 
     tail() {
-   //     if (node.next == null)
-    //        {this._tail=node;}
+
      if (this._tail === null){return null;}
   else{
         return this._tail.data;
@@ -58,15 +55,24 @@ class LinkedList {
     }
 
     insertAt(index, data) {
-    var node = new Node(data);
+        var node = new Node(data);
+         if(index===0)
+            { if (this._head == null) { this._head=this.tail=node;}
+                else { node.next = this._tail;
+                    this._head=node;
+                    node.next.prev=this._head;}
+
+            }else{
+
     var ix = index - 1;
     var state = this._head, i=0;
     while (i++ < ix){state=state.next;}
         node.next=state.next;
         state.next = node;
-     //++this.next; 
+  }   
 this.length++;
      return this;
+
   
     }
 
@@ -76,15 +82,6 @@ this.length++;
     }
 
     clear() {
-         
- //      var state=this._head;
-
-  while(this._head === this._tail)
-  { 
- 
-
-      this._tail.prev=this._tail;
-   this._tail=null;}
 
   this._tail=null;
   this._head=null;
@@ -96,11 +93,11 @@ this.length++;
     
 
     deleteAt(index) {
-        if (index >= 0 && index< this.length){
+        if (index > -1 && index< this.length){
 
             var state = this._head,i=0;
 
-            if (index ===0){
+            if (index === 0){
                 this._head = state.next;
             
                 if (!this._head){this._tail=null;}
@@ -113,24 +110,20 @@ this.length++;
                  while (i++ < index){
                 state=state.next;
                  }
-
                  state.prev.next=state.next;
-
             }
 
             this.length--;
-           
-
-        }
+                   }
         return this;
     }
 
     reverse() {
 
         if (this._head === this._tail) {
-        return;
+        return this;
     }
-
+else{
         this._tail = this._head;
          let node = this._head.next;
          let prev = this._head;
@@ -146,7 +139,7 @@ this.length++;
 
 
         return this;
-
+}
            }
 
     indexOf(data) {
